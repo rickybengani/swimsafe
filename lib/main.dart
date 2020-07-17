@@ -43,7 +43,7 @@ class MyHomePage extends StatelessWidget {
         ),
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               RaisedButton(
                 onPressed: () {
@@ -54,10 +54,12 @@ class MyHomePage extends StatelessWidget {
                 child: Container(
                   width: 300,
                   height: 300,
-                  child: Text(
-                    'Checker',
-                    style: TextStyle(fontSize: 20),
-                    textAlign: TextAlign.center,
+                  child: Center(
+                    child: Text(
+                      'Checker',
+                      style: TextStyle(fontSize: 60),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
@@ -81,10 +83,12 @@ class MyHomePage extends StatelessWidget {
                 child: Container(
                   width: 300,
                   height: 300,
-                  child: Text(
-                    'Lifeguard',
-                    style: TextStyle(fontSize: 20),
-                    textAlign: TextAlign.center,
+                  child: Center(
+                    child: Text(
+                      'Lifeguard',
+                      style: TextStyle(fontSize: 60),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(

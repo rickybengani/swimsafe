@@ -52,7 +52,8 @@ class MyHomePage extends StatelessWidget {
                 textColor: Colors.white,
                 padding: const EdgeInsets.all(0.0),
                 child: Container(
-                  width: 180,
+                  width: 300,
+                  height: 300,
                   child: Text(
                     'Checker',
                     style: TextStyle(fontSize: 20),
@@ -78,7 +79,8 @@ class MyHomePage extends StatelessWidget {
                 textColor: Colors.white,
                 padding: const EdgeInsets.all(0.0),
                 child: Container(
-                  width: 180,
+                  width: 300,
+                  height: 300,
                   child: Text(
                     'Lifeguard',
                     style: TextStyle(fontSize: 20),

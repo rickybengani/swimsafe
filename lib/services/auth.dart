@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:swim_safe/models/location.dart';
+import 'package:swim_safe/services/database.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -40,11 +41,16 @@ class AuthService {
   }
 
   // register with email & password
-  Future registerWithEmailAndPassword(String email, String password) async {
+  Future registerWithEmailAndPassword(
+      String locationName, String email, String password) async {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser location = result.user;
+
+      // create a new document for the user with the uid
+      await DatabaseService(locationName: locationName)
+          .updateLocationData(locationName);
       return _userFromFirebaseUser(location);
     } catch (e) {
       print(e.toString());

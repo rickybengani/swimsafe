@@ -5,8 +5,8 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // create user obj based on FirebaseUser
-  Location _userFromFirebaseUser(FirebaseUser user) {
-    return user != null ? Location(uid: user.uid) : null;
+  Location _userFromFirebaseUser(FirebaseUser location) {
+    return location != null ? Location(uid: location.uid) : null;
   }
 
   // auth change user stream
@@ -27,8 +27,30 @@ class AuthService {
   }
 
   // sign in with email & password
+  Future signInWithEmailAndPassword(String email, String password) async {
+    try {
+      AuthResult result = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      FirebaseUser location = result.user;
+      return _userFromFirebaseUser(location);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 
   // register with email & password
+  Future registerWithEmailAndPassword(String email, String password) async {
+    try {
+      AuthResult result = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      FirebaseUser location = result.user;
+      return _userFromFirebaseUser(location);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 
   // sign out
   Future signOut() async {

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:swim_safe/services/auth.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
   final Function toggleView;
-  SignIn({this.toggleView});
+  Register({this.toggleView});
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
 
-  // text field state
   String email = '';
   String password = '';
 
@@ -21,11 +20,11 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         backgroundColor: Colors.lightBlue[100],
         elevation: 0.0,
-        title: Text('Sign in to Swim Safe'),
+        title: Text('Sign up to Swim Safe'),
         actions: <Widget>[
           FlatButton.icon(
             icon: Icon(Icons.person),
-            label: Text('Register'),
+            label: Text('Sign In'),
             onPressed: () {
               widget.toggleView();
             },
@@ -54,7 +53,7 @@ class _SignInState extends State<SignIn> {
               SizedBox(height: 20.0),
               RaisedButton(
                 color: Colors.lightBlue[100],
-                child: Text('Sign In'),
+                child: Text('Register'),
                 onPressed: () async {
                   print(email);
                   print(password);

@@ -4,7 +4,10 @@ import 'package:progress_state_button/iconed_button.dart';
 import 'dart:io';
 import 'package:progress_state_button/progress_button.dart';
 import 'package:flutter/widgets.dart';
+import 'package:swim_safe/services/database.dart';
 import 'package:swim_safe/services/storage.dart';
+import 'package:provider/provider.dart';
+import 'package:swim_safe/models/member.dart';
 
 class Checker extends StatefulWidget {
   @override
@@ -22,7 +25,7 @@ class _CheckerState extends State<Checker> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlue[50],
+      backgroundColor: Colors.white,
       appBar: AppBar(
           backgroundColor: Colors.lightBlue[100],
           elevation: 0.0,
@@ -127,10 +130,15 @@ class _CheckOutState extends State<CheckOut> {
   }
 
   Future<void> _response() async {
-    // await _success();
-    // Navigator.of(context).pop();
-
-    await _failed();
+    // final members = Provider.of<List<Member>>(context);
+    DatabaseService().deleteMemberData(checkOutController.text);
+    // for (var i in members) {
+    //   if (i.name == checkOutController.text) {
+    await _success();
+    Navigator.of(context).pop();
+    //   }
+    // }
+    // await _failed();
   }
 
   @override

@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.lightBlue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
+          fontFamily: 'Sansation',
         ),
         home: Wrapper(),
       ),

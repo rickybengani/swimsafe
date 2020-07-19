@@ -14,10 +14,10 @@ class _SelectionState extends State<Selection> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlue[50],
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          'Swim Safe',
+          'SwimSafe',
         ),
         backgroundColor: Colors.lightBlue[100],
         elevation: 0.0,

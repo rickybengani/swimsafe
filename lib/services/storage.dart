@@ -20,13 +20,40 @@ class Uploader extends StatefulWidget {
 }
 
 class _UploaderState extends State<Uploader> {
+  Future<void> _success() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Success!'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('You have been checked in!'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   final FirebaseStorage _storage =
       FirebaseStorage(storageBucket: 'gs://swim-safe-87ed8.appspot.com');
 
   StorageUploadTask _uploadTask;
 
   /// Starts an upload task
-  void _startUpload() async {
+  Future<void> _startUpload() async {
     String filePath = 'images/${widget.name.replaceAll(' ', '')}.png';
     final StorageReference storageReference =
         FirebaseStorage().ref().child(filePath);
@@ -40,6 +67,8 @@ class _UploaderState extends State<Uploader> {
     // });
     DatabaseService().setMemberData(widget.locationName, widget.name, filePath,
         imageURL, widget.careNeeded);
+    await _success();
+    Navigator.of(context).pop();
     print('storage.dart' + widget.locationName);
     print(imageURL);
     print(widget.name);

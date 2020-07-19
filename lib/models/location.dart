@@ -1,4 +1,8 @@
+import 'package:swim_safe/services/database.dart';
+import 'package:swim_safe/services/storage.dart';
+
 class Location {
   final String uid;
-  Location({this.uid});
+  final String locationName;
+  Location({this.uid, this.locationName});
 }

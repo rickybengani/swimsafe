@@ -1,6 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:swim_safe/models/location.dart';
+import 'package:swim_safe/screens/authenticate/memberList.dart';
 import 'package:swim_safe/services/database.dart';
+import 'package:swim_safe/services/storage.dart';
+import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -47,10 +51,16 @@ class AuthService {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser location = result.user;
+      DatabaseService().setLocationData(location.uid, locationName);
+      print('auth.dart: ' + locationName);
+      Location(locationName: locationName);
+      Uploader(
+        locationName: locationName,
+      );
 
-      // create a new document for the user with the uid
-      await DatabaseService(locationName: locationName)
-          .updateLocationData(locationName);
+      // FOR DIFFERENT LOCATIONS: THIS IS HOW IT IS GOING TO WORK
+      // await DatabaseService(locationName: locationName)
+      //     .setMemberData(locationName, ' ', ' ', ' ');
       return _userFromFirebaseUser(location);
     } catch (e) {
       print(e.toString());

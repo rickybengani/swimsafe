@@ -5,30 +5,43 @@ import 'package:flutter/widgets.dart';
 import 'package:progress_state_button/progress_button.dart';
 import 'package:progress_state_button/iconed_button.dart';
 import 'package:swim_safe/screens/profiles/checker.dart';
+import 'package:swim_safe/services/database.dart';
 
 class Uploader extends StatefulWidget {
   final File file;
   final String name;
   final String careNeeded;
+  final String locationName;
 
-  Uploader({Key key, this.file, this.name, this.careNeeded}) : super(key: key);
+  Uploader({Key key, this.file, this.name, this.careNeeded, this.locationName})
+      : super(key: key);
 
   createState() => _UploaderState();
 }
 
 class _UploaderState extends State<Uploader> {
-  final FirebaseStorage _storage = FirebaseStorage(storageBucket: '');
+  final FirebaseStorage _storage =
+      FirebaseStorage(storageBucket: 'gs://swim-safe-87ed8.appspot.com');
 
   StorageUploadTask _uploadTask;
 
   /// Starts an upload task
-  void _startUpload() {
+  void _startUpload() async {
     String filePath = 'images/${widget.name.replaceAll(' ', '')}.png';
+    final StorageReference storageReference =
+        FirebaseStorage().ref().child(filePath);
+    final StorageUploadTask uploadTask = storageReference.putFile(widget.file);
+    await uploadTask.onComplete;
+    final ref = FirebaseStorage().ref().child(filePath);
+    var imageURL = await ref.getDownloadURL();
 
     // setState(() {
     //   _uploadTask = _storage.ref().child(filePath).putFile(widget.file);
     // });
-    print("Works");
+    DatabaseService().setMemberData(widget.locationName, widget.name, filePath,
+        imageURL, widget.careNeeded);
+    print('storage.dart' + widget.locationName);
+    print(imageURL);
     print(widget.name);
     print(widget.careNeeded);
     print(filePath);

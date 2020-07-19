@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:swim_safe/screens/profiles/checker.dart';
+import 'package:swim_safe/screens/profiles/lifeguard.dart';
 import 'package:swim_safe/services/auth.dart';
 
 class Selection extends StatefulWidget {
@@ -35,7 +37,10 @@ class _SelectionState extends State<Selection> {
             children: <Widget>[
               RaisedButton(
                 onPressed: () {
-                  // Navigate to Checker page
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => Checker()));
                 },
                 textColor: Colors.white,
                 padding: const EdgeInsets.all(0.0),
@@ -64,7 +69,10 @@ class _SelectionState extends State<Selection> {
               SizedBox(height: 10),
               RaisedButton(
                 onPressed: () {
-                  // Navigate to Checker page
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => Lifeguard()));
                 },
                 textColor: Colors.white,
                 padding: const EdgeInsets.all(0.0),

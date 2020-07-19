@@ -73,6 +73,7 @@ class _RegisterState extends State<Register> {
                   child: Text('Register'),
                   onPressed: () async {
                     if (_formKey.currentState.validate() == true) {
+                      print('register.dart: ' + locationName);
                       dynamic result = await _auth.registerWithEmailAndPassword(
                           locationName, email, password);
                       if (result == null) {

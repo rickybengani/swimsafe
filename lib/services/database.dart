@@ -21,6 +21,10 @@ class DatabaseService {
     });
   }
 
+  Future deleteMemberData(String name) async {
+    return await locationCollection.document(name).delete();
+  }
+
   Future setLocationData(String uid, String locationName) async {
     return await locationDataCollection.document(uid).setData({
       'Location UID': uid,

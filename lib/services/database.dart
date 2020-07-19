@@ -22,7 +22,11 @@ class DatabaseService {
   }
 
   Future deleteMemberData(String name) async {
-    return await locationCollection.document(name).delete();
+    try {
+      return await locationCollection.document(name).delete();
+    } catch (e) {
+      return "Error!";
+    }
   }
 
   Future setLocationData(String uid, String locationName) async {

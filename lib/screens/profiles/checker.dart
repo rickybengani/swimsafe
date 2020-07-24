@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:flutter/widgets.dart';
+import 'package:swim_safe/services/database.dart';
 import 'package:swim_safe/services/storage.dart';
 import 'package:provider/provider.dart';
 import 'package:swim_safe/models/member.dart';
@@ -126,20 +127,19 @@ class _CheckOutState extends State<CheckOut> {
     );
   }
 
-  Future<void> _response(List members) async {
-    // DatabaseService().deleteMemberData(checkOutController.text);
-    for (var i in members) {
-      if (i.name == checkOutController.text) {
-        await _success();
-      } else {
-        await _failed();
-      }
-    }
+  Future<void> _response() async {
+    DatabaseService().deleteMemberData(checkOutController.text);
+    // for (var i in members) {
+    //   if (i.name == checkOutController.text) {
+    await _success();
+    //   } else {
+    //     await _failed();
+    //   }
+    // }
   }
 
   @override
   Widget build(BuildContext context) {
-    final members = Provider.of<List<Member>>(context);
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(new FocusNode());
@@ -162,7 +162,7 @@ class _CheckOutState extends State<CheckOut> {
             height: 40,
             child: RaisedButton(
               onPressed: () {
-                _response(members);
+                _response();
               },
               color: Colors.deepPurple,
               shape: RoundedRectangleBorder(

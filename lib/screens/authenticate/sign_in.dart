@@ -1,9 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:swim_safe/services/auth.dart';
-import 'package:swim_safe/services/database.dart';
-import 'package:swim_safe/screens/authenticate/memberList.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swim_safe/models/location.dart';
-import 'package:swim_safe/screens/authenticate/selection.dart';
-import 'package:swim_safe/screens/profiles/checker.dart';
 import 'package:swim_safe/screens/wrapper.dart';
 import 'package:swim_safe/services/auth.dart';
 

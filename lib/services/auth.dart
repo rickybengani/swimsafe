@@ -1,10 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:swim_safe/models/location.dart';
-import 'package:swim_safe/screens/authenticate/memberList.dart';
 import 'package:swim_safe/services/database.dart';
 import 'package:swim_safe/services/storage.dart';
-import 'package:provider/provider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;

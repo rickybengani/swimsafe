@@ -1,10 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:swim_safe/models/member.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
-import 'dart:math';
 
 class MemberTile extends StatefulWidget {
   @override
@@ -38,6 +33,7 @@ class _MemberTileState extends State<MemberTile> {
                     child: _buildListItem(context, widget.member),
                     radius: 200,
                     backgroundColor: Colors.white,
+                    backgroundImage: AssetImage('lib/assets/Loading.gif'),
                   ),
                 ],
               ),

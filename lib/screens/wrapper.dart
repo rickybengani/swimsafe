@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swim_safe/models/location.dart';
 import 'package:swim_safe/screens/authenticate/authenticate.dart';
-import 'package:swim_safe/screens/authenticate/register.dart';
 import 'package:swim_safe/screens/authenticate/selection.dart';
-import 'package:swim_safe/screens/authenticate/sign_in.dart';
-import 'package:swim_safe/screens/profiles/checker.dart';
 
 class Wrapper extends StatelessWidget {
   @override

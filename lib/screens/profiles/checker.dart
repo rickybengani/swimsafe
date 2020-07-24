@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:progress_state_button/iconed_button.dart';
 import 'dart:io';
-import 'package:progress_state_button/progress_button.dart';
 import 'package:flutter/widgets.dart';
-import 'package:swim_safe/services/database.dart';
 import 'package:swim_safe/services/storage.dart';
 import 'package:provider/provider.dart';
 import 'package:swim_safe/models/member.dart';
@@ -129,20 +126,20 @@ class _CheckOutState extends State<CheckOut> {
     );
   }
 
-  Future<void> _response() async {
-    // final members = Provider.of<List<Member>>(context);
-    DatabaseService().deleteMemberData(checkOutController.text);
-    // for (var i in members) {
-    //   if (i.name == checkOutController.text) {
-    await _success();
-    Navigator.of(context).pop();
-    //   }
-    // }
-    // await _failed();
+  Future<void> _response(List members) async {
+    // DatabaseService().deleteMemberData(checkOutController.text);
+    for (var i in members) {
+      if (i.name == checkOutController.text) {
+        await _success();
+      } else {
+        await _failed();
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final members = Provider.of<List<Member>>(context);
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(new FocusNode());
@@ -165,7 +162,7 @@ class _CheckOutState extends State<CheckOut> {
             height: 40,
             child: RaisedButton(
               onPressed: () {
-                _response();
+                _response(members);
               },
               color: Colors.deepPurple,
               shape: RoundedRectangleBorder(

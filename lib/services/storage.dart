@@ -4,7 +4,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/widgets.dart';
 import 'package:progress_state_button/progress_button.dart';
 import 'package:progress_state_button/iconed_button.dart';
-import 'package:swim_safe/screens/profiles/checker.dart';
 import 'package:swim_safe/services/database.dart';
 
 class Uploader extends StatefulWidget {
@@ -46,9 +45,6 @@ class _UploaderState extends State<Uploader> {
       },
     );
   }
-
-  final FirebaseStorage _storage =
-      FirebaseStorage(storageBucket: 'gs://swim-safe-87ed8.appspot.com');
 
   StorageUploadTask _uploadTask;
 

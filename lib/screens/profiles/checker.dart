@@ -4,8 +4,6 @@ import 'dart:io';
 import 'package:flutter/widgets.dart';
 import 'package:swim_safe/services/database.dart';
 import 'package:swim_safe/services/storage.dart';
-import 'package:provider/provider.dart';
-import 'package:swim_safe/models/member.dart';
 
 class Checker extends StatefulWidget {
   @override
